@@ -126,15 +126,15 @@ share to the project.
 
 Python:
 def calculate_sum(a, b):
-# This function calculates the sum of two numbers
+This function calculates the sum of two numbers
 return a + b
-# Main function
+Main function
 if __name__ == "__main__":
 num1 = 10
 num2 = 20
-# Calculate the sum
+Calculate the sum
 result = calculate_sum(num1, num2)
-# Print the result
+Print the result
 print("Sum:", result)
 
 C++:
