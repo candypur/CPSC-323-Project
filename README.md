@@ -6,14 +6,14 @@ Angela Reyes, Kent Nguyen, Jared Olalde
 
 Project Description: Data Processing Project
 
-Objective: 
+# Objective: 
 The objective of this project is to develop a
 data processing application that reads data from an input
 file, processes the data, removes excess space and
 comments from the code, tokenizes the remaining code,
 and prints the output in a tabular form.
 
-To-Dos:
+# To-Dos:
 
 1. Write code in the language of your choice to read
 data from an input file.
@@ -31,12 +31,12 @@ tabular form.
 Example Input:
 
 # This is a sample code
-# It adds two numbers
+It adds two numbers
 def add(a, b):
-# Add two numbers
+Add two numbers
 result = a + b
 return result
-# Test the function
+Test the function
 print(add(5, 3))
 
 Output1 - Code after removing excess space and
@@ -60,13 +60,14 @@ Literals           5, 3
 choose any preferred format for displaying the
 information.
 
-Project Submission Guidelines:
+# Project Submission Guidelines:
 
 Group Collaboration:
 - This project should be completed in a group of three
 members.
 - Each group member is required to contribute
 actively to the project.
+
 GitHub Repository Submission:
 - One designated person from each group should
 upload the completed project to a GitHub
@@ -79,7 +80,7 @@ README.md file of the GitHub repository.
 - Provide a link to the GitHub repository in the
 Canvas submission.
 
-Collaboration Expectations:
+# Collaboration Expectations:
 - Collaboration among all team members is essential
 for completing the project.
 - All team members must actively participate in the
@@ -104,24 +105,24 @@ contributions from all team members.
 - Tokenization of Code: 20%
 - Output Presentation: 10%
 
-Submission Deadline:
+# Submission Deadline:
 The project submission deadline is on 31st March 2024. It
 is essential to adhere to the specified deadline to avoid
 any penalties.
 
-Academic Dishonesty:
+# Academic Dishonesty:
 If plagiarism or cheating is detected, a grade of '0' will be
 assigned to all members of the team, and the incident
 will be reported to the department. Please ensure
 honesty in your work.
 
-Note:
+# Note:
 Effective collaboration and communication are critical to
 the success of the project. Please ensure all team
 members are actively engaged and contribute their fair
 share to the project.
 
-Code for evaluating your project:
+# Code for evaluating your project:
 
 Python:
 def calculate_sum(a, b):
