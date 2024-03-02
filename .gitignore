@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/323project/x64/Debug/323project.tlog
+/323project/x64/Debug
+/.vs
+/323project/.vs/323project
+/323project
+/.gitignore
+/.gitignore
