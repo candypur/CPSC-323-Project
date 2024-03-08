@@ -19,7 +19,7 @@ int main() {
 	 "323example2.txt" is the same as the one provided in
 	 the project file, "323example.txt" is more complicated
 	*/
-	ifstream ReadFile("323example2.txt");
+	ifstream ReadFile("323example.txt");
 
 	if (!ReadFile) {
 		cerr << "Unable to open file 323example.txt" << endl;
@@ -30,12 +30,10 @@ int main() {
 	while (getline(ReadFile, text)) {
 		// Skip comment lines
 		if (text[0] == '#' || (text[0] == '/' && text[1] == '/')) continue;
-		cout << text << endl;
-		
 		// Used regex to remove whitespaces
 		text = std::regex_replace(text, std::regex("\\s+"), "");
 		cout << text << endl;
-
+		
 		// Find certain strings and sort them into the
 		// corresponding vectors
 
