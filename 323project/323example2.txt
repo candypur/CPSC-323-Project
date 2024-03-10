@@ -2,7 +2,7 @@
 # It adds two numbers
 def add(a, b):
 # Add two numbers
-result = a + b
+result = a +     b
 return result
 # Test the function
-print(add(5, 3))
+print         (add(5, 3))
