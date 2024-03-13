@@ -4,6 +4,7 @@
 #include <string>
 #include <regex>
 #include <iomanip>
+#include <sstream>
 using namespace std;
 
 int main() {
@@ -14,11 +15,11 @@ int main() {
 	vector<pair<string,string>> lexemes;
 
 	// doesn't contain all keywords yet, just the more basic ones
-	vector<string> keywords		{"char", "bool", "int", "float", "double", "void", "for",
-								"while", "if", "return", "def"};
-	vector<string> delimiters	{"(", ")", "{", "}", "[", "]", ";", "<", ">", ":"};
-	vector<string> operators	{"+", "-", "++", "--", "*", "/", "%", "=", "=="};
-
+	vector<string> keywords{ "char", "bool", "int", "float", "double", "void", "for",
+								"while", "if", "return", "def" };
+	vector<string> delimiters{ "(", ")", "{", "}", "[", "]", ";", "<", ">", ":" };
+	vector<string> operators{ "+", "-", "++", "--", "*", "/", "%", "=", "==" };
+	vector<string> identifier{ "calculate_sum", "a", "b", "num1", "num2", "cout", "endl" };
 
 	/*
 	 You can use "323example.txt" or "323example2.txt"
@@ -52,7 +53,7 @@ int main() {
 		cout << "Separated: ";
 		for (int i = 0; i < curr_line.size(); i++) {
 			cout << curr_line[i];
-			if (i != curr_line.size()-1) 
+			if (i != curr_line.size()-1)
 				cout << " | ";
 		}
 		cout << endl << endl;
@@ -62,6 +63,20 @@ int main() {
 		if (find(keywords.begin(), keywords.end(), curr_line[0]) != keywords.end()) {
 			lexemes.push_back(make_pair(curr_line[0], "keyword"));
 			count++;
+		}
+
+		// Checks through all words in curr_line, checks if its a identifer (Needs to be fixed)
+		for (string& text : curr_line) {
+			if (find(identifier.begin(), identifier.end(), text) != identifier.end()) {
+				lexemes.push_back(make_pair(text, "identifier"));
+				count++;
+			}
+
+			// Checks for operators
+			if (find(operators.begin(), operators.end(), text) != operators.end()) {
+				lexemes.push_back(make_pair(text, "operator"));
+				count++;
+			}
 		}
 
 		// check if last character of last element is separator
@@ -80,7 +95,7 @@ int main() {
 	// Outputs - (need to delete duplicates)
 	cout << "\nOutput 2 - Tokenized code:\n" << endl;
 	cout << setw(13) << left << "Category" << setw(8) << left << "Tokens" << endl
-		 << setw(13) << left << "Keywords";
+		<< setw(13) << left << "Keywords";
 	for (int i = 0; i < lexemes.size(); i++) {
 		if (lexemes[i].second == "keyword") {
 			cout << lexemes[i].first << " ";
