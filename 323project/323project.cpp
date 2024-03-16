@@ -12,7 +12,7 @@ int main() {
 	int count = 0;
 	// vectors used to sort tokens into their categories
 	// these will be done in pairs, ex: <"[", "separator">
-	vector<pair<string,string>> lexemes;
+	vector<pair<string, string>> lexemes;
 
 	// doesn't contain all keywords yet, just the more basic ones
 	vector<string> keywords{ "char", "bool", "int", "float", "double", "void", "for",
@@ -20,6 +20,7 @@ int main() {
 	vector<string> delimiters{ "(", ")", "{", "}", "[", "]", ";", "<", ">", ":" };
 	vector<string> operators{ "+", "-", "++", "--", "*", "/", "%", "=", "==" };
 	vector<string> identifier{ "calculate_sum", "a", "b", "num1", "num2", "cout", "endl" };
+	
 
 	/*
 	 You can use "323example.txt" or "323example2.txt"
@@ -42,6 +43,11 @@ int main() {
 		// Used regex to remove whitespaces
 		text = regex_replace(text, regex("\\s+"), " ");
 		cout << text << endl;
+		
+		//Regex object that matches strings with 10 or 20
+		std::regex number_regex("10|20");
+		//Regex object that matches strings with "Sum:"
+		std::regex string_regex("Sum:");
 
 		// separates and stores the strings into a vector by spaces (INCOMPLETE)
 		vector<string> curr_line;
@@ -53,7 +59,7 @@ int main() {
 		cout << "Separated: ";
 		for (int i = 0; i < curr_line.size(); i++) {
 			cout << curr_line[i];
-			if (i != curr_line.size()-1)
+			if (i != curr_line.size() - 1)
 				cout << " | ";
 		}
 		cout << endl << endl;
@@ -76,6 +82,17 @@ int main() {
 			if (find(operators.begin(), operators.end(), text) != operators.end()) {
 				lexemes.push_back(make_pair(text, "operator"));
 				count++;
+
+			}
+			//Finds string literals (incomplete)
+			if (regex_search(text, string_regex)) {
+				lexemes.push_back(make_pair(text, "literals"));
+				count++;
+			}
+			//Finds numeric literals (incomplete)
+			if (regex_search(text, number_regex)) {
+				lexemes.push_back(make_pair(text, "literals"));
+				count++;
 			}
 		}
 
@@ -86,7 +103,7 @@ int main() {
 			lexemes.push_back(make_pair(last, "delimiter"));
 			count++;
 		}
-
+	
 	}
 
 	// Close File
