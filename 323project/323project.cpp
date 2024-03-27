@@ -19,7 +19,7 @@ int main() {
 	vector<string> keywords{ "char", "bool", "int", "float", "double", "void", "for",
 								"while", "if", "return", "def" };
 	vector<string> delimiters{ "(", ")", "{", "}", "[", "]", ";", "<", ">", ":" };
-	vector<string> operators{ "+", "-", "++", "--", "*", "/", "%", "=", "==" };
+	vector<string> operators{ "+", "-", "++", "--", "*", "/", "%", "=", "==", "<<"};
 	vector<string> identifier{ "calculate_sum", "a", "b", "num1", "num2", "cout", "endl" };
 
 	//Creating empty sets to hold tokens
@@ -53,9 +53,15 @@ int main() {
 		cout << text << endl;
 
 		//Regex object that matches strings with 10 or 20
-		std::regex number_regex("10|20");
+		std::regex number_regex("10|20|0");
 		//Regex object that matches strings with "Sum:"
-		std::regex string_regex("Sum:");
+		std::regex string_regex("Sum: ");
+
+		//Adds a space if any of these characters are found so they can be tokenized also separates from other lexemes
+		text = regex_replace(text, regex(";"), " ;");
+		text = regex_replace(text, regex("\\("), " ( ");
+		text = regex_replace(text, regex("\\)"), " ) ");
+		text = regex_replace(text, regex("\\,"), " ,");
 
 		// separates and stores the strings into a vector by spaces (INCOMPLETE)
 		vector<string> curr_line;
@@ -112,7 +118,7 @@ int main() {
 				//lexemes.push_back(make_pair(text, "literals"));
 				count++;
 			}
-			//Finds numeric literals (incomplete)
+			//Finds numeric literals
 			if (regex_search(text, number_regex)) {
 				//lexemes.push_back(make_pair(text, "literals"));
 				literalsSet.insert(text);
