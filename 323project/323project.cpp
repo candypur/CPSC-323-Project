@@ -18,9 +18,9 @@ int main() {
 	// doesn't contain all keywords yet, just the more basic ones
 	vector<string> keywords{ "char", "bool", "int", "float", "double", "void", "for",
 								"while", "if", "return", "def" };
-	vector<string> delimiters{ "(", ")", "{", "}", "[", "]", ";", "<", ">", ":" };
+	// vector<string> delimiters{ "(", ")", "{", "}", "[", "]", ";", "<", ">", ":" };
 	vector<string> operators{ "+", "-", "++", "--", "*", "/", "%", "=", "==", "<<"};
-	vector<string> identifier{ "calculate_sum", "a", "b", "num1", "num2", "cout", "endl" };
+	vector<string> identifier{ "calculate_sum", "a", "b", "num1", "num2", "cout", "endl", "main", "result" };
 
 	//Creating empty sets to hold tokens
 	set<string> keywordsSet;
@@ -52,13 +52,15 @@ int main() {
 		text = regex_replace(text, regex("\\s+"), " ");
 		cout << text << endl;
 
-		//Regex object that matches strings with 10 or 20
+		//Regex object that matches strings with 10, 20, or 0
 		std::regex number_regex("10|20|0");
 		//Regex object that matches strings with "Sum:"
 		std::regex string_regex("Sum: ");
+		//Regex object that matches delimiters
+		std::regex delimiter_regex("\\(|\\)|\\{|\\}|\\[|\\]|;|<|>|,|");
 
 		//Adds a space if any of these characters are found so they can be tokenized also separates from other lexemes
-		text = regex_replace(text, regex(";"), " ;");
+		text = regex_replace(text, regex(";"), " ; ");
 		text = regex_replace(text, regex("\\("), " ( ");
 		text = regex_replace(text, regex("\\)"), " ) ");
 		text = regex_replace(text, regex("\\,"), " ,");
@@ -96,7 +98,7 @@ int main() {
 				//lexemes.push_back(make_pair(text, "keyword"));
 				count++;
 			}
-			// Checks for identifiers (incomplete) Missing a few tokens
+			// Checks for identifiers
 			if (find(identifier.begin(), identifier.end(), text) != identifier.end()) {
 				// Adds any identifiers into identifier set
 				identifiersSet.insert(text);
@@ -112,6 +114,14 @@ int main() {
 				count++;
 
 			}
+			//Finds delimiters
+			if (regex_match(text, delimiter_regex)) {
+				//Adds last to delimiters set
+				delimitersSet.insert(text);
+				//lexemes.push_back(make_pair(last, "delimiter"));
+				count++;
+			}
+
 			//Finds string literals (incomplete)
 			if (regex_search(text, string_regex)) {
 				literalsSet.insert(text);
@@ -126,7 +136,7 @@ int main() {
 			}
 		}
 
-		// check if last character of last element is separator
+		/* check if last character of last element is separator
 		string last = curr_line.back();
 		last = last.back();
 		if (find(delimiters.begin(), delimiters.end(), last) != delimiters.end()) {
@@ -134,7 +144,7 @@ int main() {
 			delimitersSet.insert(last);
 			//lexemes.push_back(make_pair(last, "delimiter"));
 			count++;
-		}
+		} */
 
 	}
 
