@@ -46,11 +46,11 @@ int main() {
 
 	// receive text from file
 	while (getline(ReadFile, text)) {
-		// Skip comment lines
-		if (text[0] == '#' || (text[0] == '/')) continue;
-		// Used regex to remove whitespaces
-		text = regex_replace(text, regex("\\s+"), " ");
-		cout << text << endl;
+            // Skip comment lines
+            if (text.find('#') == 0 || text.find("//") == 0) continue;
+
+            // Remove excess whitespace
+            text = regex_replace(text, regex("\\s+"), " ");
 
 		//Regex object that matches strings with 10, 20, or 0
 		std::regex number_regex("10|20|0");
