@@ -74,10 +74,11 @@ int main() {
 		}
 		cout << "Separated: ";
 		for (int i = 0; i < curr_line.size(); i++) {
-			cout << curr_line[i];
-			if (i != curr_line.size() - 1)
-				cout << " | ";
-		}
+            cout << curr_line[i];
+            if ((i != curr_line.size()) && curr_line[i] != "\"Sum:")
+                    cout << " | ";
+
+        }
 		cout << endl << endl;
 
 		/* finds first word, finds if its a keyword from vector, stores in vector
@@ -151,24 +152,31 @@ int main() {
 	// Close File
 	ReadFile.close();
 
-	// Output Tokenized code
-    cout << "\nOutput 2 - Tokenized code:\n" << endl;
-    cout << "Category\tTokens\n";
-    cout << "Keywords\t";
-    for (const auto& keyword : keywordsSet)
-        cout << keyword << " ";
-    cout << "\nIdentifiers\t";
-    for (const auto& identifier : identifiersSet)
-        cout << identifier << " ";
-    cout << "\nOperators\t";
-    for (const auto& oper : operatorsSet)
-        cout << oper << " ";
-    cout << "\nDelimiters\t";
-    for (const auto& delimiter : delimitersSet)
-        cout << delimiter << " ";
-    cout << "\nLiterals\t";
-    for (const auto& literal : literalsSet)
-        cout << literal << " ";
-    cout << "\n\nTotal Token Count: " << count << endl;
+	// Outputs - (need to delete duplicates) <- Solved?
+	cout << "\nOutput 2 - Tokenized code:\n" << endl;
+	cout << setw(13) << left << "Category" << setw(8) << left << "Tokens" << endl
+		<< setw(13) << left << "Keywords";
+	for (const auto& keyword : keywordsSet) {
+		cout << keyword << " ";
+	}
+	cout << endl << setw(13) << left << "Identifiers";
+	for (const auto& identifier : identifiersSet) {
+		cout << identifier << " ";
+	}
+	cout << endl << setw(13) << left << "Operators";
+	for (const auto& operators : operatorsSet) {
+		cout << operators << " ";
+	}
+	cout << endl << setw(13) << left << "Delimiters";
+	for (const auto& delimiter : delimitersSet) {
+		cout << delimiter << " ";
+	}
+	cout << endl << setw(13) << left << "Literals";
+	for (const auto& literal : literalsSet) {
+		cout << literal << " ";
+	}
 
+	cout << "\n\nTotal Token Count: " << count << endl;
+
+	return 0;
 }
