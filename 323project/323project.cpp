@@ -29,6 +29,7 @@ int main() {
 	set<string> delimitersSet;
 	set<string> literalsSet;
 
+	string temp_quotes;
 
 	/*
 	 You can use "323example.txt" or "323example2.txt"
@@ -55,7 +56,7 @@ int main() {
 		//Regex object that matches strings with 10, 20, or 0
 		std::regex number_regex("10|20|0");
 		//Regex object that matches strings with "Sum:"
-		std::regex string_regex("Sum: ");
+		std::regex string_regex("Sum:");
 		//Regex object that matches delimiters
 		std::regex delimiter_regex("\\(|\\)|\\{|\\}|\\[|\\]|;|<|>|,|");
 
@@ -69,18 +70,23 @@ int main() {
 		vector<string> curr_line;
 		stringstream curr(text);
 		string temp;
-		while (curr >> temp) {
-			curr_line.push_back(temp);
-		}
+        while (curr >> temp) {
+            if (temp[0] == '\"') {
+                temp_quotes = temp_quotes + temp;
+                if (temp.back() != '\"') {
+                    continue;
+                }
+                curr_line.push_back(temp_quotes);
+                count--;
+                continue;
+            }
+            curr_line.push_back(temp);
+        }
 		cout << "Separated: ";
         for (int i = 0; i < curr_line.size(); i++) {
             cout << curr_line[i];
-            if (i != curr_line.size() - 1) {
-                // Add condition to check if the current token is not equal to "\"Sum:"
-                if (curr_line[i] != "\"Sum:") {
-                    cout << " | ";
-                }
-            }
+            if (i != curr_line.size() - 1)
+                cout << " | ";
         }
         cout << endl << endl;
 
