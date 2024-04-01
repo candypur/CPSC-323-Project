@@ -73,12 +73,17 @@ int main() {
 			curr_line.push_back(temp);
 		}
 		cout << "Separated: ";
-		for (int i = 0; i < curr_line.size(); i++) {
+        for (int i = 0; i < curr_line.size(); i++) {
             cout << curr_line[i];
-            if ((i != curr_line.size()) && curr_line[i] != "\"Sum:")
+            if (i != curr_line.size() - 1) {
+                // Add condition to check if the current token is not equal to "\"Sum:"
+                if (curr_line[i] != "\"Sum:") {
                     cout << " | ";
-
+                }
+            }
         }
+        cout << endl << endl;
+
 
 		/* finds first word, finds if its a keyword from vector, stores in vector
 		this is more focused on 323example.txt
